@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.floydpink.ios.leetcode" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Leet Code</name>
+    <description>
+        All of the solved problems from LeetCode OJ
+    </description>
+    <author email="imbleedingme@googlemail.com" href="http://floydpink.github.io">
+        Floyd Pink
+    </author>
+    <content src="q/index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <preference name="Fullscreen" value="true" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <platform name="ios">
+        <preference name="Orientation" value="all" />
+    </platform>
+</widget>
