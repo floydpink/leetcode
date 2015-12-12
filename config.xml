@@ -10,6 +10,9 @@
     <content src="q/index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <preference name="Fullscreen" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#2637a8" />
+    <preference name="DisallowOverscroll" value="true"/>
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
