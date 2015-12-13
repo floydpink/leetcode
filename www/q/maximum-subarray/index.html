@@ -1,17 +1,22 @@
-<html><head><title>46: Permutations (Medium)</title>
+<html><head><title>53: Maximum Subarray (Medium)</title>
 <!-- BEGIN COPY/PASTE FROM CORDOVA  -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 <!-- END COPY/PASTE FROM CORDOVA  -->
-</head><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /><body><h2><a href="https://leetcode.com/problems/permutations/" target="_blank">46: Permutations (Medium)</a></h2><div class="back-button"><a href="../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+</head><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /><body><h2><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">53: Maximum Subarray (Medium)</a></h2><div class="back-button"><a href="../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
               <p></p><p>
-Given a collection of numbers, return all possible permutations.
+Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+</p>
+<p>
+For example, given the array <code>[&#x2212;2,1,&#x2212;3,4,&#x2212;1,2,1,&#x2212;5,4]</code>,<br>
+the contiguous subarray <code>[4,&#x2212;1,2,1]</code> has the largest sum = <code>6</code>.
 </p>
 
-<p>
-For example,<br>
-<code>[1,2,3]</code> have the following permutations:<br>
-<code>[1,2,3]</code>, <code>[1,3,2]</code>, <code>[2,1,3]</code>, <code>[2,3,1]</code>, <code>[3,1,2]</code>, and <code>[3,2,1]</code>.
-</p><p></p>
+<p class="showspoilers"><a href="#" onclick="showSpoilers(this); return false;">click to show more practice.</a></p>
+
+<div class="spoilers"><b>More practice:</b>
+
+<p>If you have figured out the O(<i>n</i>) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
+</div><p></p>
               
                 <div>
                   
@@ -33,35 +38,22 @@ For example,<br>
               
 
             </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
-// https://leetcode.com/problems/permutations/
+// https://leetcode.com/problems/maximum-subarray/
 //
 
-'use strict';
-
+// https://leetcode.com/discuss/15805/accepted-o-n-solution-in-java
 /**
  * @param {number[]} nums
- * @return {number[][]}
+ * @return {number}
  */
-var permute = function (nums) {
-  var result = [];
-  var len = nums.length;
-
-  if (len === 0) {
-    result.push([]);
-    return result;
+var maxSubArray = function (nums) {
+  if (nums.length === 0) return 0;
+  var maxSoFar = nums[0], maxEndingHere = nums[0];
+  for (var i = 1; i < nums.length; i++) {
+    maxEndingHere = Math.max(maxEndingHere + nums[i], nums[i]);
+    maxSoFar = Math.max(maxSoFar, maxEndingHere);
   }
-
-  for (var i = 0; i < len; i++) {
-    var before = nums.slice(0, i);
-    var after = nums.slice(i + 1, len);
-    var partials = permute(before.concat(after));
-
-    for (var j = 0; j < partials.length; j++) {
-      var perm = partials[j].slice();
-      perm.unshift(nums[i]);
-      result.push(perm);
-    }
-  }
-  return result;
+  return maxSoFar;
 };
+
 </code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script type="text/javascript" src="../../cordova.js"></script><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>
