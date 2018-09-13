@@ -1,0 +1,49 @@
+<html><head><title>111: Minimum Depth of Binary Tree (Easy)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/" target="_blank">111: Minimum Depth of Binary Tree (Easy)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Given a binary tree, find its minimum depth.</p>
+
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/minimum-depth-of-binary-tree/
+//
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var minDepth = function (root) {
+  if (root === null) return 0;
+  if (root.left === null) return minDepth(root.right) + 1;
+  if (root.right === null) return minDepth(root.left) + 1;
+  return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+};</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

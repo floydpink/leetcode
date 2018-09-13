@@ -1,0 +1,67 @@
+<html><head><title>202: Happy Number (Easy)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/happy-number/" target="_blank">202: Happy Number (Easy)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Write an algorithm to determine if a number is &quot;happy&quot;.</p>
+
+<p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+
+<p><b>Example:&#xA0;</b>19 is a happy number</p>
+
+<ul style="list-style: none;">
+<li>1<sup>2</sup> + 9<sup>2</sup> = 82</li>
+<li>8<sup>2</sup> + 2<sup>2</sup> = 68</li>
+<li>6<sup>2</sup> + 8<sup>2</sup> = 100</li>
+<li>1<sup>2</sup> + 0<sup>2</sup> + 0<sup>2</sup> = 1</li>
+</ul>
+
+<p><b>Credits:</b><br>Special thanks to <a href="https://leetcode.com/discuss/user/mithmatt">@mithmatt</a> and <a href="https://leetcode.com/discuss/user/ts">@ts</a> for adding this problem and creating all test cases.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/happy-number/
+//
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function (n) {
+  if (n <= 0) return false;
+  var sums = {};
+  while (sums[n] === undefined) {
+    sums[n] = true;
+    var sum = 0;
+    while (n > 0) {
+      sum += (n % 10) * (n % 10);
+      n = Math.floor(n / 10);
+    }
+    if (sum === 1) return true;
+    else n = sum;
+  }
+  return false;
+};
+
+console.log(isHappy(19));
+console.log(isHappy(1));
+console.log(isHappy(6389));
+console.log(isHappy(2));</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

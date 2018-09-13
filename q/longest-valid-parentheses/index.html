@@ -1,0 +1,69 @@
+<html><head><title>32: Longest Valid Parentheses (Hard)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/longest-valid-parentheses/" target="_blank">32: Longest Valid Parentheses (Hard)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Given a string containing just the characters <code>&apos;(&apos;</code> and <code>&apos;)&apos;</code>, find the length of the longest valid (well-formed) parentheses substring.
+</p>
+<p>
+For <code>&quot;(()&quot;</code>, the longest valid parentheses substring is <code>&quot;()&quot;</code>, which has length = 2.
+</p>
+<p>
+Another example is <code>&quot;)()())&quot;</code>, where the longest valid parentheses substring is <code>&quot;()()&quot;</code>, which has length = 4.
+</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/longest-valid-parentheses/
+//
+
+// Thanks to the solution at https://leetcode.com/discuss/68395/java-solution-12ms-structure-simple-and-clear-o-n
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestValidParentheses = function (s) {
+  var max = 0, left = 0, stack = [];
+  for (var i = 0; i < s.length; i++) {
+    var char = s.charAt(i);
+    if (char === '(') {
+      stack.push(i);
+    } else {
+      if (stack.length === 0) {
+        left = i + 1;
+      } else {
+        stack.pop();
+        if (stack.length === 0) {
+          max = Math.max(max, i + 1 - left);
+        } else {
+          max = Math.max(max, i - stack[stack.length - 1]);
+        }
+      }
+    }
+  }
+  return max;
+};
+
+console.log(longestValidParentheses('()(()'));
+console.log(longestValidParentheses('('));
+console.log(longestValidParentheses('()'));
+console.log(longestValidParentheses(')()())'));
+console.log(longestValidParentheses(')()(()))()())()()'));</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

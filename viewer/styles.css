@@ -1,0 +1,39 @@
+body {
+  font-family : 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', Helvetica, Arial, sans-serif;
+  margin      : 25px;
+}
+
+.back-button {
+  float : right;
+}
+
+a, a:visited {
+  color : #1106ff;
+}
+
+ol.problems {
+  font-size : larger;
+}
+
+ol.problems > li {
+  padding : 10px;
+}
+
+ol.problems > li > a {
+  display : block;
+}
+
+ol.problems > li:nth-child(even) {
+  background-color : rgba(225, 225, 225, 0.75);
+}
+
+#solution {
+  display : none;
+}
+
+.headline {
+  background-color : rgba(145, 145, 145, 0.56);
+  color            : #fff;
+  padding          : 2px 10px;
+  border-radius    : 5px;
+}

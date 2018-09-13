@@ -1,0 +1,128 @@
+<html><head><title>112: Path Sum (Easy)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/path-sum/" target="_blank">112: Path Sum (Easy)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>
+Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+</p>
+
+For example:<br>
+Given the below binary tree and <code>sum = 22</code>,
+<pre>
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \      \
+        7    2      1
+</pre>
+
+<p>
+return true, as there exist a root-to-leaf path <code>5-&gt;4-&gt;11-&gt;2</code> which sum is 22.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/path-sum/
+//
+
+//
+// https://leetcode.com/problems/path-sum/
+//
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {boolean}
+ */
+var hasPathSum = function (root, sum) {
+  if (root === null) return false;
+
+  var dfs = function (node, sum, path) {
+    if (node) {
+      var temp = path + node.val;
+      if (!node.left && !node.right) {
+        if (sum === temp) return true;
+      }
+      if (dfs(node.left, sum, temp)) return true;
+      return dfs(node.right, sum, temp);
+    }
+    return false;
+  };
+
+  return dfs(root, sum, 0);
+};
+
+/*
+ //  Iterative DFS
+ var hasPathSum = function (root, sum) {
+ var stack = [], pre = null, cur = root;
+ var pathsum = 0;
+ while (cur || stack.length) {
+ while (cur) {
+ stack.push(cur);
+ pathsum += cur.val;
+ cur = cur.left;
+ }
+ cur = stack[stack.length - 1];
+
+ if (!cur.left && !cur.right && pathsum === sum) return true;
+
+ if (cur.right && pre !== cur.right) {
+ cur = cur.right;
+ } else {
+ pre = cur;
+ stack.pop();
+ pathsum -= cur.val;
+ cur = null;
+ }
+ }
+ return false;
+ };
+ */
+
+
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
+var arrayToBinaryTree = function (nums) {
+  if (nums.length === 0) {
+    return null;
+  }
+  var rootIndex = Math.floor(nums.length / 2);
+  var tree = new TreeNode(nums[rootIndex]);
+  tree.left = arrayToBinaryTree(nums.slice(0, rootIndex));
+  tree.right = arrayToBinaryTree(nums.slice(rootIndex + 1));
+  return tree;
+};
+
+console.log(hasPathSum(arrayToBinaryTree([1]), 1));
+console.log(hasPathSum(arrayToBinaryTree([2, 1]), 1));</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

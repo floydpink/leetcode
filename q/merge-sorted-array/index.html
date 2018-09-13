@@ -1,0 +1,47 @@
+<html><head><title>88: Merge Sorted Array (Easy)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/merge-sorted-array/" target="_blank">88: Merge Sorted Array (Easy)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Given two sorted integer arrays <i>nums1</i> and <i>nums2</i>, merge <i>nums2</i> into <i>nums1</i> as one sorted array.</p>
+
+<p>
+<b>Note:</b><br>
+You may assume that <i>nums1</i> has enough space (size that is greater or equal to <i>m</i> + <i>n</i>) to hold additional elements from <i>nums2</i>. The number of elements initialized in <i>nums1</i> and <i>nums2</i> are <i>m</i> and <i>n</i> respectively.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/merge-sorted-array/
+//
+
+/**
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void} Do not return anything, modify nums1 in-place instead.
+ */
+var merge = function (nums1, m, nums2, n) {
+  var i = m - 1, j = n - 1, k = m + n - 1;
+  while (j >= 0) {
+    nums1[k--] = i >= 0 && nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
+  }
+};</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

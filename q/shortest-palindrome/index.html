@@ -1,0 +1,64 @@
+<html><head><title>214: Shortest Palindrome (Hard)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/shortest-palindrome/" target="_blank">214: Shortest Palindrome (Hard)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>
+Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
+</p>
+
+<p>For example: </p>
+<p>Given <code>&quot;aacecaaa&quot;</code>, return <code>&quot;aaacecaaa&quot;</code>.</p>
+<p>Given <code>&quot;abcd&quot;</code>, return <code>&quot;dcbabcd&quot;</code>.</p>
+
+<p><b>Credits:</b><br>Special thanks to <a href="https://leetcode.com/discuss/user/ifanchu">@ifanchu</a> for adding this problem and creating all test cases. Thanks to <a href="https://leetcode.com/discuss/user/Freezen">@Freezen</a> for additional test cases.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/shortest-palindrome/
+//
+
+'use strict';
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var counter = 0;
+var shortestPalindrome = function (s) {
+  console.log('.>', ++counter, s);
+  var j = 0;
+  for (var i = s.length - 1; i >= 0; i--) {
+    if (s.charAt(i) === s.charAt(j)) {
+      j++;
+    }
+  }
+  if (j === s.length) {
+    return s;
+  }
+  var suffix = s.substring(j), reversed = suffix.split('').reverse().join('');
+  return reversed + shortestPalindrome(s.substring(0, j)) + suffix;
+};
+
+console.log(shortestPalindrome('malayalam'));
+console.log(shortestPalindrome('malayalamp'));
+console.log(shortestPalindrome('malayzazlam'));
+//console.log(shortestPalindrome('malamalayalama'));</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

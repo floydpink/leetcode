@@ -1,0 +1,90 @@
+<html><head><title>109: Convert Sorted List to Binary Search Tree (Medium)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank">109: Convert Sorted List to Binary Search Tree (Medium)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+//
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+var getTree = function (array) {
+  if (array.length === 0) {
+    return null;
+  }
+  var rootIndex = Math.floor(array.length / 2);
+  var tree = new TreeNode(array[rootIndex]);
+  tree.left = getTree(array.slice(0, rootIndex));
+  tree.right = getTree(array.slice(rootIndex + 1));
+  return tree;
+};
+
+/**
+ * @param {ListNode} head
+ * @return {TreeNode}
+ */
+var sortedListToBST = function (head) {
+  var current = head, sortedArray = [];
+  while (current !== null) {
+    sortedArray.push(current.val);
+    current = current.next;
+  }
+  return getTree(sortedArray);
+};
+
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
+var initializeArrayToList = function (array) {
+  var list = new ListNode(array.shift());
+  var current = list;
+  while (array.length) {
+    current.next = new ListNode(array.shift());
+    current = current.next;
+  }
+  return list;
+};
+
+console.log(sortedListToBST(initializeArrayToList([0])));
+console.log(sortedListToBST(initializeArrayToList([0, 1, 4, 5, 6, 7])));</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

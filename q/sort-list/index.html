@@ -1,0 +1,94 @@
+<html><head><title>148: Sort List (Medium)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/sort-list/" target="_blank">148: Sort List (Medium)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Sort a linked list in <i>O</i>(<i>n</i> log <i>n</i>) time using constant space complexity.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/sort-list/
+//
+
+// Thanks to https://leetcode.com/discuss/28594/bottom-recurring-with-space-complextity-time-complextity
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var sortList = function (head) {
+  if (!head || !head.next) return head;
+
+  var len = 0, curr = head;
+  while (curr) {
+    len++;
+    curr = curr.next;
+  }
+
+  var dummy = new ListNode(0);
+  dummy.next = head;
+  var left, right, tail;
+  for (var step = 1; step < len; step <<= 1) {
+    curr = dummy.next;
+    tail = dummy;
+    while (curr) {
+      left = curr;
+      right = split(left, step);
+      curr = split(right, step);
+      tail = merge(left, right, tail);
+    }
+  }
+  return dummy.next;
+};
+
+var split = function (head, n) {
+  for (var i = 1; head && i < n; i++) head = head.next;
+
+  if (!head) return null;
+  var second = head.next;
+  head.next = null;
+  return second;
+};
+
+var merge = function (l1, l2, head) {
+  var curr = head;
+  while (l1 && l2) {
+    if (l1.val > l2.val) {
+      curr.next = l2;
+      curr = l2;
+      l2 = l2.next;
+    } else {
+      curr.next = l1;
+      curr = l1;
+      l1 = l1.next;
+    }
+  }
+  curr.next = l1 ? l1 : l2;
+  while (curr.next) curr = curr.next;
+  return curr;
+};
+</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

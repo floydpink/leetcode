@@ -1,0 +1,72 @@
+<html><head><title>166: Fraction to Recurring Decimal (Medium)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/fraction-to-recurring-decimal/" target="_blank">166: Fraction to Recurring Decimal (Medium)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.</p>
+
+<p>If the fractional part is repeating, enclose the repeating part in parentheses.</p>
+<p>
+For example,
+<ul>
+<li>Given numerator = 1, denominator = 2, return &quot;0.5&quot;.</li>
+<li>Given numerator = 2, denominator = 1, return &quot;2&quot;.</li>
+<li>Given numerator = 2, denominator = 3, return &quot;0.(6)&quot;.</li>
+</ul>
+</p>
+
+<p><b>Credits:</b><br>Special thanks to <a href="https://oj.leetcode.com/discuss/user/Shangrila">@Shangrila</a> for adding this problem and creating all test cases.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/fraction-to-recurring-decimal/
+//
+
+/**
+ * @param {number} numerator
+ * @param {number} denominator
+ * @return {string}
+ */
+var fractionToDecimal = function (numerator, denominator) {
+  if (numerator === 0) return '0';
+  var result = '';
+  result += (numerator > 0) ^ (denominator > 0) ? '-' : '';
+  var num = Math.abs(numerator), den = Math.abs(denominator);
+
+  result += Math.floor(num / den);
+
+  num %= den;
+  if (num === 0) {
+    return result;
+  }
+
+  result += '.';
+  var map = {};
+  while (num !== 0) {
+    map[num] = result.length;
+
+    num *= 10;
+    result += Math.floor(num / den);
+    num %= den;
+
+    var repeatingFractionStart = map[num];
+    if (repeatingFractionStart !== undefined) {
+      result = result.substring(0, repeatingFractionStart) + '(' + result.substring(repeatingFractionStart) + ')';
+      break;
+    }
+  }
+  return result;
+};</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

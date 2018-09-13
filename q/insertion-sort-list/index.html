@@ -1,0 +1,78 @@
+<html><head><title>147: Insertion Sort List (Medium)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank">147: Insertion Sort List (Medium)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Sort a linked list using insertion sort.</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/insertion-sort-list/
+//
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var insertionSortList = function (head) {
+  if (!head || !head.next) return head;
+  var dummy = new ListNode(0);
+  var pre = dummy;
+  var curr = head;
+  var next = null;
+  while (curr !== null) {
+    next = curr.next;
+    while (pre.next !== null && pre.next.val < curr.val) {
+      pre = pre.next;
+    }
+    curr.next = pre.next;
+    pre.next = curr;
+    pre = dummy;
+    curr = next;
+  }
+  return dummy.next;
+};
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
+function initializeList(array) {
+  if (!array.length) return null;
+  var head = new ListNode(array.shift());
+  var current = head;
+  while (array.length) {
+    current.next = new ListNode(array.shift());
+    current = current.next;
+  }
+  return head;
+}
+
+console.log(JSON.stringify(insertionSortList(initializeList([4, 19, 14, 5, -3, 1, 8, 5, 11, 15]))));
+</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>

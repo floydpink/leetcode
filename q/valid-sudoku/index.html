@@ -1,0 +1,69 @@
+<html><head><title>36: Valid Sudoku (Easy)</title>
+<!-- BEGIN COPY/PASTE FROM CORDOVA  -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<!-- END COPY/PASTE FROM CORDOVA  -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><link href="../../viewer/prism.css" rel="stylesheet" /><link href="../../viewer/styles.css" rel="stylesheet" /></head><body><h2><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank">36: Valid Sudoku (Easy)</a></h2><div class="back-button"><a href="../../index.html">Back...</a></div><div>&#160;</div><div class="headline">Problem:</div><div>
+              <p></p><p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">Sudoku Puzzles - The Rules</a>.</p>
+
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>&apos;.&apos;</code>.</p>
+
+<p>
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png"><br>
+</p><p style="font-size: 11px">A partially filled sudoku which is valid.</p>
+<p></p>
+
+<p><b>Note:</b><br>
+A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.
+</p><p></p>
+              
+                <div>
+                  
+                </div>
+              
+
+              
+                <div>
+                  <div id="tags" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+              
+                <div>
+                  <div id="similar" class="btn btn-xs btn-warning"></div>
+                  <span class="hidebutton"></span>
+                </div>
+              
+
+            </div><div class="headline">Solution:</div><div><a id="showSolution" href="#">Show...</a></div><div id="solution"><pre><code class="language-javascript">//
+// https://leetcode.com/problems/valid-sudoku/
+//
+
+'use strict';
+
+var isValid = function (board, x1, x2, y1, y2) {
+  var map = {};
+  for (var x = x1; x <= x2; x++)
+    for (var y = y1; y <= y2; y++) {
+      var cell = board[x][y];
+      if (cell !== '.') {
+        if (map[cell] !== undefined) return false;
+        else map[cell] = true;
+      }
+    }
+  return true;
+};
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function (board) {
+  for (var i = 0; i < 9; i++) {
+    //  columns                        rows                           squares
+    if (!isValid(board, i, i, 0, 8) || !isValid(board, 0, 8, i, i) || !isValid(board, Math.floor(i / 3) * 3, Math.floor(i / 3) * 3 + 2, (i % 3) * 3, (i % 3) * 3 + 2)) {
+      return false;
+    }
+  }
+  return true;
+};</code></pre></div><footer><span style="float: right;"><a href="https://github.com/floydpink" target="_blank">&copy; Floyd Pink</a></span></footer><script src="../../viewer/prism.js"></script><script src="../../viewer/scripts.js"></script></body></html>
